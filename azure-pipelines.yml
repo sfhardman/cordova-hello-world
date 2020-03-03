@@ -12,13 +12,24 @@ pool:
 
 
 steps:
-
+- script: printenv
 - script: |
-    npm install -g cordova
+    npm install -g cordova webpack
     npm list -g --depth=0
     npm install
     cordova requirements
     cordova prepare
     cordova build ios
-  displayName: script
+  displayName: install global
+- script:
+    npm install
+    cordova requirements
+  displayName: install
+- script:
+    cordova prepare
+    ls platforms/ios/www
+  displayName: cordova prepare
+- script:
+    cordova build
+  displayName: cordova build
 
