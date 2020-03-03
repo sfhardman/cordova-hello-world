@@ -14,8 +14,10 @@ pool:
 steps:
 
 - script: |
+    npm install -g cordova
     npm list -g --depth=0
     npm install
-    npx cordova build ios
+    cordova requirements
+    cordova build ios
   displayName: script
 
