@@ -21,15 +21,21 @@ steps:
     cordova prepare
     cordova build ios
   displayName: install global
-- script:
+- script: |
     npm install
     cordova requirements
   displayName: install
-- script:
+- script: |
     cordova prepare
     ls platforms/ios/www
   displayName: cordova prepare
-- script:
+- script: |
     cordova build
   displayName: cordova build
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'All'
+    publishLocation: 'pipeline'
 
