@@ -13,8 +13,7 @@ pool:
 
 steps:
 - script: |
-    pwd
-    ls
+    npm list -g --depth=0
     npm install
   displayName: script
 
