@@ -13,29 +13,32 @@ pool:
 
 steps:
 - script: printenv
-- script: |
-    npm install -g cordova webpack ios-deploy
-    npm list -g --depth=0
-    npm install
-    cordova requirements
-    cordova prepare
-    cordova build ios
-  displayName: install global
-- script: |
-    npm install
-    cordova requirements
-  displayName: install
-- script: |
-    cordova prepare
-    ls platforms/ios/www
-  displayName: cordova prepare
-- script: |
-    cordova build
-  displayName: cordova build
+- script: pwd
+  workingDirectory: '$(Pipeline.Workspace)'
+# - script: |
+#     npm install -g cordova webpack ios-deploy
+#     npm list -g --depth=0
+#     npm install
+#     cordova requirements
+#     cordova prepare
+#     cordova build ios
+#   displayName: install global
+# - script: |
+#     npm install
+#     cordova requirements
+#   displayName: install
+# - script: |
+#     cordova prepare
+#     ls platforms/ios/www
+#   displayName: cordova prepare
+# - script: |
+#     cordova build
+#   displayName: cordova build
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'All'
-    publishLocation: 'pipeline'
+# - task: PublishPipelineArtifact@1
+#   displayName: publish-apk
+#   inputs:
+#     targetPath: '$(Pipeline.Workspace)'
+#     artifact: 'All'
+#     publishLocation: 'pipeline'
 
